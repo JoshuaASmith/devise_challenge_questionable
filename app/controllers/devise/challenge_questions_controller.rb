@@ -35,7 +35,7 @@ class Devise::ChallengeQuestionsController < DeviseController
     byebug
     if resource.errors.empty?
       set_flash_message :notice, :updated_challenge_questions
-      redirect_to root_path(resource)
+      redirect_to home_path(resource)
     else
       render :edit
     end
