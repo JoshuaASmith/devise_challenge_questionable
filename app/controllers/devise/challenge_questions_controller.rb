@@ -2,7 +2,7 @@ class Devise::ChallengeQuestionsController < DeviseController
 
   prepend_before_filter :require_no_authentication, :only => [ :new, :create, :edit, :update, :max_challenge_question_attempts_reached ]
   prepend_before_filter :authenticate_scope!, :only => [:show, :authenticate, :manage, :forgot]
-  before_filter :authenticate_user, :prepare_and_validate, :handle_challenge_questions, :only => [:show, :authenticate]
+  before_filter :prepare_and_validate, :handle_challenge_questions, :only => [:show, :authenticate]
 
   # GET /resource/challenge_question/new
   def new
@@ -31,12 +31,11 @@ class Devise::ChallengeQuestionsController < DeviseController
 
   # PUT /resource/challenge_question
   def update
-    puts 'update'
     self.resource = resource_class.reset_challenge_questions_by_token(params[resource_name])
     byebug
     if resource.errors.empty?
       set_flash_message :notice, :updated_challenge_questions
-      redirect_to home_path
+      redirect_to home_path(:user => resource)
     else
       render :edit
     end
