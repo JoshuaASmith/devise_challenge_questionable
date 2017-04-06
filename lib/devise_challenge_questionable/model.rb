@@ -99,6 +99,7 @@ module Devise
         # containing an error in reset_challenge_questions_token attribute.
         # Attributes must contain reset_challenge_questions_token, challenge_question and confirmation
         def reset_challenge_questions_by_token(attributes={})
+          byebug
           challenge_questionable = find_or_initialize_with_error_by(:reset_challenge_questions_token, attributes[:reset_challenge_questions_token])
           challenge_questionable.reset_challenge_questions!(attributes) if challenge_questionable.persisted?
           challenge_questionable
