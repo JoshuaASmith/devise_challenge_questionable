@@ -23,7 +23,6 @@ class Devise::ChallengeQuestionsController < DeviseController
 
   # GET /resource/challenge_question/edit?reset_challenge_questions_token=abcdef
   def edit
-    puts "THISA IS DIFFERENT"
     self.resource = resource_class.new
     resource.reset_challenge_questions_token = params[:reset_challenge_questions_token]
     Devise.number_of_challenge_questions_stored.times { resource.send("#{resource_name}_challenge_questions").build }
@@ -33,13 +32,11 @@ class Devise::ChallengeQuestionsController < DeviseController
   # PUT /resource/challenge_question
   def update
     self.resource = resource_class.reset_challenge_questions_by_token(params[resource_name])
-
+    byebug
     if resource.errors.empty?
-      puts 'update first'
       set_flash_message :notice, :updated_challenge_questions
       redirect_to home_path
     else
-      puts 'update second'
       render :edit
     end
   end
