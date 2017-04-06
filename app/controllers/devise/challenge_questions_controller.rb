@@ -14,6 +14,8 @@ class Devise::ChallengeQuestionsController < DeviseController
   def create
     self.resource = resource_class.send_reset_challenge_questions_instructions(params[resource_name])
     if resource.errors.empty?
+      puts 'create'
+      byebug
       set_flash_message :notice, :send_instructions
       redirect_to home_path
     else
@@ -31,11 +33,12 @@ class Devise::ChallengeQuestionsController < DeviseController
 
   # PUT /resource/challenge_question
   def update
+    puts 'update'
     self.resource = resource_class.reset_challenge_questions_by_token(params[resource_name])
     byebug
     if resource.errors.empty?
       set_flash_message :notice, :updated_challenge_questions
-      redirect_to root_path
+      redirect_to home_path
     else
       render :edit
     end
