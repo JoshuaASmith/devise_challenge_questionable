@@ -35,9 +35,11 @@ class Devise::ChallengeQuestionsController < DeviseController
     self.resource = resource_class.reset_challenge_questions_by_token(params[resource_name])
 
     if resource.errors.empty?
+      puts 'update first'
       set_flash_message :notice, :updated_challenge_questions
       redirect_to home_path
     else
+      puts 'update second'
       render :edit
     end
   end
