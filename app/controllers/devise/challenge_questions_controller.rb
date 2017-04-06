@@ -12,7 +12,6 @@ class Devise::ChallengeQuestionsController < DeviseController
 
   # POST /resource/challenge_question
   def create
-    puts "THISA IS DIFFERENT"
     self.resource = resource_class.send_reset_challenge_questions_instructions(params[resource_name])
     if resource.errors.empty?
       set_flash_message :notice, :send_instructions
@@ -24,6 +23,7 @@ class Devise::ChallengeQuestionsController < DeviseController
 
   # GET /resource/challenge_question/edit?reset_challenge_questions_token=abcdef
   def edit
+    puts "THISA IS DIFFERENT"
     self.resource = resource_class.new
     resource.reset_challenge_questions_token = params[:reset_challenge_questions_token]
     Devise.number_of_challenge_questions_stored.times { resource.send("#{resource_name}_challenge_questions").build }
