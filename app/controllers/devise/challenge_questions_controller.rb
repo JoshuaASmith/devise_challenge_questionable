@@ -1,8 +1,8 @@
 class Devise::ChallengeQuestionsController < DeviseController
 
-  prepend_before_filter :require_no_authentication, :only => [ :new, :create, :edit, :update, :max_challenge_question_attempts_reached ]
-  prepend_before_filter :authenticate_scope!, :only => [:show, :authenticate, :manage, :forgot]
-  before_filter :prepare_and_validate, :handle_challenge_questions, :only => [:show, :authenticate]
+  prepend_before_action :require_no_authentication, :only => [ :new, :create, :edit, :update, :max_challenge_question_attempts_reached ]
+  prepend_before_action :authenticate_scope!, :only => [:show, :authenticate, :manage, :forgot]
+  before_action :prepare_and_validate, :handle_challenge_questions, :only => [:show, :authenticate]
 
   # GET /resource/challenge_question/new
   def new
@@ -12,7 +12,6 @@ class Devise::ChallengeQuestionsController < DeviseController
 
   # POST /resource/challenge_question
   def create
-    puts "THISA IS DIFFERENT"
     self.resource = resource_class.send_reset_challenge_questions_instructions(params[resource_name])
     if resource.errors.empty?
       set_flash_message :notice, :send_instructions

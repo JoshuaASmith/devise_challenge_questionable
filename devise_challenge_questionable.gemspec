@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description = <<-EOF
     ### Features ###
     * configure max challenge question attempts
-    * per user level control if he really need challenge questions
+    * per user level control if they really need challenge questions
   EOF
 
   s.rubyforge_project = "devise_challenge_questionable"
@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_runtime_dependency 'rails', '>= 4.0.0'
+  s.add_runtime_dependency 'rails', '>= 5.0.0'
   s.add_runtime_dependency 'devise', '>= 4.0.0'
 
   s.add_development_dependency 'bundler'

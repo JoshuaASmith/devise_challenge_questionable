@@ -4,7 +4,7 @@ module DeviseChallengeQuestionable
       extend ActiveSupport::Concern
 
       included do
-        before_filter :handle_challenge_questions
+        before_action :handle_challenge_questions
       end
 
       private
